@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website with Background Videos and Navbar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Scope One", serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* -----FULLSCREEN BG ----- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            padding: 0 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar li {
+            font-weight: 400;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            color: white;
+        }
+
+         .navbar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #00a9d7;
+        }
+        /* end of Navabar */
+
+        /* 2nd video section */
+        .video-section {
+            position: relative;
+            height: auto;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+            filter: brightness(0.6);
+        }
+
+        .video-section .content {
+            display: flex;
+            z-index: 10;
+            max-width: 700px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 1px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Firstsectincontainer */
+
+        .Firstsectincontainer{
+            height: 70vh;
+            width: 100%;
+
+        }
+
+        /* ----- HEADING & SUBHEADING ----- */
+        .Heading,
+        .Subheading {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: 150px;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Heading {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-top: 120px;
+        }
+
+        .Subheading {
+            font-size: 1.3rem;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        /* Academic */
+
+        .Academic_section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 20px;
+        }
+
+        .Academic_container {
+            height: auto;
+            width: 80vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .Academic_smallercontainer {
+            height: 60vh;
+            width: 80vw;
+            background-color: rgba(10, 10, 10, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 15px;
+        }
+
+        .OAcademicbox,
+        .OAcademicbox2 {
+            height: 250px;
+            width: 220px;
+            gap: 15px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            margin-bottom: 35px;
+        }
+
+        .OAcademicbox1 {
+            height: 300px;
+            width: 400px;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        /* 2nd container */
+        .Academic_smallercontainer2 {
+            height: 60vh;
+            width: 37vw;
+            background-color: rgba(10, 10, 10, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+
+        .Academicbox {
+            height: 160px;
+            width: 160px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            margin-bottom: 35px;
+        }
+
+        .Academicbox1_1vid {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: contain;
+        }
+
+        .Academicbox1_1 {
+            height: 260px;
+            width: 260px;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .AcademicPic {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            object-position: 50% 70%;
+            transition: transform 0.3s ease;
+        }
+
+
+        .OAcademicbox:hover,
+        .OAcademicbox1:hover,
+        .Academicbox1_1:hover,
+        .Academicbox:hover,
+        .OAcademicbox2:hover {
+            box-shadow: 1px -4px 40px;
+            transform: translateY(-10px);
+        }
+
+
+        /* ----- HEADING & SUBHEADING (Academic) ----- */
+        .AcademicHeading {
+            margin-left: 600px;
+            margin-top: 20px;
+            font-size: 3rem;
+            font-weight: 400;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Academictext {
+            font-size: 1rem;
+            margin-top: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .Academic_Project_desc {
+            flex-basis: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+
+        .AcademicLink {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .OAcademicbox1_1_desc {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        .Academicbox1_1_desc {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.6rem;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        /* footer */
+
+
+        .footer-placeholder {
+            height: 45px;
+            background: #00034d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- First background video -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="All website elements/Experiences/Awards bg.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="navbar">
+        <div class="navbar_left">
+            <ul>
+                <li><a href="portfolio Homepage.html">Homepage</a></li>
+            </ul>
+        </div>
+        <ul>
+            <li><a href="Project page.html">Projects</a></li>
+            <li><a href="Contact.HTML">Contact</a></li>
+            <li><a href="Experience Page.html">Experiences</a></li>
+
+        </ul>
+    </div>
+
+
+
+    <!-- First set of boxes -->
+    <div class="Firstsectincontainer">
+
+        <!-- Heading & Subheading -->
+        <h1 class="Heading">Award</h1>
+
+        <h3 class="Subheading">
+        </h3>
+
+
+    </div>
+
+    <!-- Second background video section -->
+    <section class="video-section">
+        <video autoplay muted loop playsinline>
+            <source src="All website elements/Experiences/bg video_Experiences.mp4" type="video/mp4" />
+        </video>
+
+
+        <!-- Second Section containers -->
+
+        <div class="Academic_section">
+
+            <div class="Academic_container">
+
+
+                <!-- Front row -->
+                <div class="Academic_smallercontainer">
+
+                    <div class="OAcademicbox">
+                        <img class="AcademicPic" src="All website elements/Experiences/2nd Section/NYAA.png" alt="">
+                        <p class="Academictext">National Youth Achievement Award (NYAA) Bronze</p>
+                    </div>
+                    <div class="OAcademicbox1">
+                        <img class="AcademicPic" src="All website elements/Experiences/2nd Section/RC PIC.jpg" alt="">
+                        <div class="OAcademicbox1_1_desc">
+                            Vice-Chairperson of Discipline | First Aid Instructor </div>
+
+                    </div>
+                    <div class="OAcademicbox2">
+                        <img class="AcademicPic" src="All website elements/Experiences/2nd Section/Red Cross Logo.png"
+                            alt="">
+                        <p class="Academictext">Red Cross Youth </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Second row internship -->
+
+                <h1 class="AcademicHeading">Internship </h1>
+                <div class="Academic_smallercontainer2">
+
+
+                    <div class="Academicbox"><img class="AcademicPic"
+                            src="All website elements/Experiences/2nd Section/Internship Carnival Design Pic.png"
+                            alt="">
+                        <p class="Academictext"></p>
+                    </div>
+                    <div class="Academicbox1_1"><video autoplay muted loop playsinline class="Academicbox1_1vid">
+                            <source
+                                src="All website elements/Experiences/2nd Section/Carnival Event Singapore  Ocean Green Event.mp4"
+                                type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="Academicbox1_1_desc">
+                            Event Executive | Carnival Empire Pte Ltd <br>
+                            Corporate design | Onsite Event Management</div>
+                    </div>
+
+                </div>
+
+                <!-- 3rd row internship -->
+
+                <div class="Academic_smallercontainer2">
+
+                    <div class="Academicbox"><img class="AcademicPic"
+                            src="All website elements/Experiences/2nd Section/Commerical Pic 1.jpg" alt="">
+                        <p class="Academictext"></p>
+                    </div>
+                    <div class="Academicbox1_1"><a href="https://vimeo.com/719711395" target="_blank"
+                            class="AcademicLink">
+                            <img class="AcademicPic"
+                                src="All website elements/Experiences/2nd Section/Commerical  vid bg.png" alt="">
+                        </a>
+                        <div class="Academicbox1_1_desc">
+                            Production & Wardrobe Assistant | <br> Atypical Films<br>
+                            “Sensei 5G Power” Commercial (iPhone 12)<br>
+                            Protected by NDA | Watch here</div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+    </section>
+
+    <div class="footer-placeholder">© Ganga Gurung 2025. All rights reserved.</div>
+</body>
+
+</html>

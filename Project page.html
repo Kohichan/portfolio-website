@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website with Background Videos and Navbar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
+
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Scope One", serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* -----FULLSCREEN BG ----- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            padding: 0 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar li {
+            font-weight: 400;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+       .navbar a:hover {
+            color: #00a9d7;
+        }
+
+        /* end of Navabar */
+
+        /* CLIENT */
+        .Client_section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 20px;
+        }
+
+        .Client_container {
+            height: 70vh;
+            width: 80vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+
+        .Clientbox {
+            height: 250px;
+            width: 250px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+        }
+
+        .clientbox img {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .ClientPic {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            object-position: center;
+
+        }
+
+        .Clientbox:hover {
+            box-shadow: 1px -4px 40px;
+            transform: translatey(-10px);
+
+        }
+
+        /* ----- HEADING & SUBHEADING (CLIENT) ----- */
+        .ClientHeading {
+            margin-left: auto;
+            margin-right: 150px;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-top: 100px;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Clienttext {
+            font-size: 1rem;
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+
+
+        /* ----- PERSONAL----- */
+        .Personal_container {
+            position: relative;
+            height: 140vh;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .Personal_section {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 40px 20px;
+            gap: 12px;
+        }
+
+        .Personal_container_right {
+            height: 90vh;
+            width: 78vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            align-items: flex-end;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+
+        .Personalbox {
+            height: 550px;
+            width: 250px;
+            gap: 17px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+        }
+
+        .VidPersonal {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+        }
+
+        .Personalbox2 {
+            height: 550px;
+            width: 550px;
+            gap: 17px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+        }
+
+        .VidPersonal2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+        }
+
+        .Personalbox:hover,
+        .Personalbox2:hover {
+            box-shadow: 1px -4px 40px;
+            transform: translateY(-10px);
+        }
+
+
+        .Personal_container_left {
+            height: 70vh;
+            width: 35vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+
+
+
+        /* ----- HEADING & SUBHEADING (Personal) ----- */
+        .Heading2,
+        .Subheading2 {
+            max-width: 600px;
+            margin-left: 30px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Heading2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .Subheading2 {
+            font-size: 0.9em;
+            margin-right: 45px;
+        }
+
+
+        /* Academic  */
+
+
+        .Academic_section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 20px;
+        }
+
+        .Academic_container {
+            height: auto;
+            width: 80vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .Academic_smallercontainer,
+        .Academic_smallercontainer2 {
+            height: 75vh;
+            width: 80vw;
+            background-color: rgba(52, 52, 52, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 15px;
+        }
+
+        .Academicbox,
+        .Academicbox2 {
+            height: 250px;
+            width: 220px;
+            gap: 15px;
+            background-color: white;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            margin-top: 10px;
+        }
+
+
+        .Academicbox1vid {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: fill;
+        }
+
+        .Academicbox1_1vid {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: contain;
+            background: black;
+        }
+
+        .Academicbox1_1,
+        .Academicbox1 {
+            height: 300px;
+            width: 400px;
+            gap: 15px;
+            border-radius: 30px;
+            text-align: center;
+            transition: ease-in 0.3s;
+            overflow: hidden;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .Academicbox1_1_desc {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+
+        .AcademicPic {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            object-position: 50% 70%;
+            transition: transform 0.3s ease;
+
+        }
+
+
+        .Academicbox:hover,
+        .Academicbox1:hover,
+        .Academicbox1_1:hover,
+        .Academicbox2:hover {
+            box-shadow: 1px -4px 40px;
+            transform: translateY(-10px);
+        }
+
+
+        /* ----- HEADING & SUBHEADING (Academic) ----- */
+        .AcademicHeading {
+            margin-left: auto;
+            margin-right: 150px;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-top: 100px;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Academictext {
+            font-size: 1rem;
+            margin-top: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .Academic_Project_desc {
+            flex-basis: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+
+        .AcademicLink {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+
+
+
+        .footer-placeholder {
+            height: 45px;
+            background: #00034d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.6rem;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- First background video -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="All website elements/Projects/SGX BG video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="navbar">
+        <div class="navbar_left">
+            <ul>
+                <li><a href="portfolio Homepage.html">Homepage</a></li>
+            </ul>
+        </div>
+        <ul>
+            <li><a href="Project page.html">Projects</a></li>
+            <li><a href="Contact.HTML">Contact</a></li>
+            <li><a href="Experience Page.html">Experiences</a></li>
+
+        </ul>
+    </div>
+
+
+
+    <!-- Heading & Subheading -->
+    <h1 class="ClientHeading">Client Projects </h1>
+
+    <!-- Project Section -->
+    <div class="Client_section">
+        <div class="Client_container">
+            <div class="Clientbox"><img class="ClientPic" src="All website elements/Projects/Client Projects/child_illustration.png" alt="">
+                <p class="Clienttext">Illustration for <br> a biotech start-up</p>
+            </div>
+            <div class="Clientbox"> <img class="ClientPic"
+                    src="All website elements/Projects/Client Projects/OceanDay.png"
+                    alt="">
+                <p class="Clienttext">Game set design for<br> a community event </p>
+            </div>
+            <div class="Clientbox"> <img class="ClientPic" src="All website elements/Projects/Client Projects/SGX.png" alt="">
+                <p class="Clienttext">Backdrop design for <br> a corporate event </p>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+
+
+    </div>
+
+
+    <!-- Personal Projects -->
+    <div class="Personal_section">
+
+        <!-- left side -->
+        <div class="Personal_container_left">
+            <h1 class="Heading2">Personal Projects</h1>
+
+            <p class="Subheading2">
+                Byte-Sized Impact<br>
+                A student-led humanitarian project creating playful, interactive games to raise awareness on global
+                issues, inspire donations to trusted NGOs, and connect players to real-world causes. In 2026, we’ll
+                launch free coding workshops for disadvantaged youth.
+            </p>
+        </div>
+
+
+        <!-- Right side -->
+        <div class="Personal_container_right">
+            <div class="Personalbox">
+                <video autoplay muted loop playsinline class="VidPersonal">
+                    <source src="All website elements/Projects/Personal Projects/SDG 7 Recording.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="Personalbox2">
+                <video autoplay muted loop playsinline class="VidPersonal2">
+                    <source src="All website elements/Projects/Personal Projects/Bread_Recording.mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Academic Projects -->
+
+
+    <!-- Heading & Subheading -->
+    <h1 class="AcademicHeading">Academic Projects </h1>
+
+    <div class="Academic_section">
+        <div class="Academic_container">
+
+            <!-- Front row -->
+            <div class="Academic_smallercontainer">
+
+                <div class="Academicbox">
+                    <a href="https://www.sinema.sg/2021/10/14/republic-polytechnics-student-run-film-festival-first-shots-x5-celebrates-the-first-giant-steps-of-budding-filmmakers/"
+                        target="_blank" class="AcademicLink">
+                        <img class="AcademicPic" src="All website elements/Projects/Academic Projects/FS/FS PIC 1.jpg" alt="">
+                    </a>
+                    <p class="Academictext">Read Feature Article</p>
+                </div>
+                <div class="Academicbox1"> <video autoplay muted loop playsinline class="Academicbox1vid">
+                        <source src="All website elements/Projects/Academic Projects/FS/First Shots Venue Mockup 2021.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="Academicbox2">
+                    <a href="https://www.youtube.com/watch?v=2DCII0HbqyM" target="_blank" class="AcademicLink">
+                        <img class="AcademicPic" src="All website elements/Projects/Academic Projects/FS/FS LOGO.png" alt="">
+                    </a>
+                    <p class="Academictext">Watch Live</p>
+                </div>
+                <P class="Academic_Project_desc"> Marketing Representative & LIVE Host <br>Firstshots(s) is a
+                    student-run film festival celebrating works of new student filmmakers. </p>
+            </div>
+
+
+            <!-- Second row -->
+
+            <div class="Academic_smallercontainer2">
+
+                <div class="Academicbox"><img class="AcademicPic" src="All website elements/Projects/Academic Projects/OBS/OBS PIC 1.JPG" alt="">
+                    <p class="Academictext"></p>
+                </div>
+                <div class="Academicbox1_1"><video autoplay muted loop playsinline class="Academicbox1_1vid">
+                        <source src="All website elements/Projects/Academic Projects/OBS/VR SNIPPET 3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="Academicbox1_1_desc">
+                        Protected by NDA — Only select content displayed</div>
+                </div>
+                <div class="Academicbox2"><img class="AcademicPic" src="All website elements/Projects/Academic Projects/OBS/OBS LOGO.jpg" alt="">
+                    <p class="Academictext"></p>
+                </div>
+                <P class="Academic_Project_desc">Project Leader & 360° VR Creator <br>Final Year Project | OutBound
+                    Singapore <br> 360° VR content | static videos | quizzes | Interactive eBook to educate and
+                    train
+                    trainees </p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="footer-placeholder">© Ganga Gurung 2025. All rights reserved.</div>
+</body>
+
+</html>

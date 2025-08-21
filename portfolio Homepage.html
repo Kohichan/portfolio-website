@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website with Background Videos and Navbar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Scope One", serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* -----FULLSCREEN BG ----- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            padding: 0 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navbar li {
+            font-weight: 400;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #00a9d7;
+        }
+
+        /* end of navbar */
+
+        /* Parent section */
+        .Parent1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 20px;
+        }
+
+        .Parent {
+            display: flex;
+            gap: 80px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+        /* ----- HEADING & SUBHEADING ----- */
+        .Heading,
+        .Subheading {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: 150px;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 5);
+        }
+
+        .Heading {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-top: 120px;
+        }
+
+        .Subheading {
+            font-size: 1.3rem;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .slider {
+            position: relative;
+            height: 200px;
+            width: 200px;
+            transform-style: preserve-3d;
+            animation: rotate 20s linear infinite;
+
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+
+            100% {
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+
+        .slider span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: center;
+            transform-style: preserve-3d;
+            transform: rotateY(calc(var(--i) * 90deg)) translateZ(300px);
+        }
+
+
+        .slider span img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .slider span video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .slider span:hover img {
+            transform: translateY(-20px) scale(1.2);
+        }
+
+        .slider span:hover video {
+            transform: translateY(-20px) scale(1.2);
+        }
+
+
+
+        /* ----- SECOND VIDEO SECTION ----- */
+        .video-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+            filter: brightness(0.6);
+        }
+
+        .video-section .content {
+            display: flex;
+            z-index: 10;
+            max-width: 700px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 1px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .Sect2Parent {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .Sect2 {
+            display: flex;
+            gap: 80px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+        .Heading2,
+        .Subheading2 {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 40px;
+        }
+
+        .Heading2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .Subheading2 {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tech-skills,
+        .soft-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .box1 {
+            position: relative;
+            height: 50px;
+            width: 140px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        /* Right side  */
+        .box {
+            display: flex;
+            justify-content: flex-end;
+            height: 200px;
+            width: 400px;
+            border-radius: 30px;
+            overflow: hidden;
+            transition: ease-in 0.3s;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .box1_1 {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: row;
+            height: 150px;
+            width: 190px;
+            border-radius: 30px;
+            overflow: hidden;
+            transition: ease-in 0.3s;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            object-position: 90%;
+        }
+
+        .box1_1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 55% 50%;
+            transform: scale(1.1);
+        }
+
+        .box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 48%;
+            transform: scale(1.1);
+        }
+
+        .video-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .video-boxes-row {
+            display: flex;
+            flex-direction: row;
+            gap: 18px;
+        }
+
+        .box:hover {
+            box-shadow: 0 8px 40px rgba(285, 234, 234, 0.6);
+            transform: translateY(-10px);
+        }
+
+        .box1_1:hover {
+            box-shadow: 0 8px 40px rgba(285, 234, 234, 0.6);
+            transform: translateY(-10px);
+        }
+
+        .Intro1 {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            margin: 0;
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .footer-placeholder {
+            height: 45px;
+            background: #00034d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- First background video -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="All website elements/Homepage/bg video_Homepage.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="navbar">
+        <div class="navbar_left">
+            <ul>
+                <li><a href="portfolio Homepage.html">Homepage</a></li>
+            </ul>
+        </div>
+        <ul>
+            <li><a href="Project page.html">Projects</a></li>
+            <li><a href="Contact.HTML">Contact</a></li>
+            <li><a href="Experience Page.html">Experiences</a></li>
+
+        </ul>
+    </div>
+
+    <!-- Heading & Subheading -->
+    <h1 class="Heading">Interdisciplinary Leadership </h1>
+    <!-- First set of boxes -->
+    <div class="Parent1">
+        <div class="Parent">
+            <div class="slider">
+                <span style="--i:0;"><img src="All website elements/Homepage/Slider_1.jpg"></span>
+                <span style="--i:1;"><img src="All website elements/Homepage/Slider_2.jpg"></span>
+                <span style="--i:2;"><video autoplay muted loop playsinline>
+                        <source src="All website elements/Homepage/Slider_3.mp4" type="video/mp4">
+                    </video></span>
+                <span style="--i:3;"><img src="All website elements/Homepage/Slider 4.jpg"></span>
+
+            </div>
+
+
+        </div>
+    </div>
+    <h3 class="Subheading">
+        Despite my belief in practicality, I have a soft spot for idealism. <br>I like to put others ahead of myself
+        rather
+        than draw attention. <br> I'll be noticed anyway.
+    </h3>
+
+
+    </div>
+
+    <!-- Second background video section -->
+    <section class="video-section">
+        <video autoplay muted loop playsinline>
+            <source src="All website elements/Homepage/bg video_Homepage.mp4" type="video/mp4" />
+        </video>
+
+        <div class="Sect2Parent">
+            <!-- LEFT SIDE -->
+            <div>
+                <h2 class="Heading2">Yes, I developed this website</h2>
+                <p class="Subheading2">
+                    Namaste, Ganga here! <BR>
+                    I’m a Year 2 Business Administration student with a love for learning. Humility and openness to
+                    feedback are at the core of how I work with myself and others.<br>
+                    I value mentors who believe in developing people, and I thrive in environments where learning is
+                    symbolic.
+
+                </p>
+                <div class="content">
+                    <!-- Technical Skills Row -->
+                    <div class="tech-skills">
+                        <div class="box1">
+                            <h3 class="skills">Illustrator</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">Photoshop</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">Indesign</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">CSS</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">HTML</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">JS</h3>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills Row -->
+                    <div class="soft-skills">
+                        <div class="box1">
+                            <h3 class="skills">Resilience</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">Receptive</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">Adaptability</h3>
+                        </div>
+                        <div class="box1">
+                            <h3 class="skills">Public Speaking</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="video-boxes">
+                <!-- Main video box -->
+                <div class="box">
+                    <video autoplay muted loop playsinline>
+                        <source src="All website elements/Homepage/Mustang.mp4" type="video/mp4">
+                    </video>
+                    <h3 class="Intro1">Nepal</h3>
+                </div>
+
+                <!-- Row of box1_1 below -->
+                <div class="video-boxes-row">
+                    <div class="box1_1">
+                        <img src="All website elements/Homepage/buddhist.jpg">
+                        <h3 class="Intro1">Buddhism</h3>
+                    </div>
+                    <div class="box1_1">
+                        <img src="All website elements/Homepage/Mustangpic.jpg">
+                        <h3 class="Intro1">Portrait</h3>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <div class="footer-placeholder">© Ganga Gurung 2025. All rights reserved.</div>
+</body>
+
+</html>
